@@ -1,3 +1,10 @@
 import { Route } from '@angular/router';
 
-export const appRoutes: Route[] = [];
+import { TaskDashboardEntryComponent } from '@breakdown-nx/task-dashboard';
+
+export const appRoutes: Route[] = [
+    {
+        path: '',
+        component: TaskDashboardEntryComponent
+    }
+];
