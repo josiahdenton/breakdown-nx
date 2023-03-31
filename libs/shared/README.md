@@ -1,7 +1,11 @@
-# shared
+# Shared
 
-This library was generated with [Nx](https://nx.dev).
+What is shared? Shared should remain a generic library responsible for
 
-## Running unit tests
+- components
+    - all basic and simple components, i.e.
+        - cards, buttons, inputs, sliders, progress bars, etc.
+- composables
+    - forms, videos, dashboards, complex tiles 
 
-Run `nx test shared` to execute the unit tests.
+

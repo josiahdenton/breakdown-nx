@@ -15,8 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@breakdown-nx/shared": ["libs/shared/src/index.ts"],
-      "@breakdown-nx/task-dashboard": ["libs/task-dashboard/src/index.ts"]
+      "@breakdown-nx/features/task-dashboard": [
+        "libs/features/task-dashboard/src/index.ts"
+      ],
+      "@breakdown-nx/shared/components": [
+        "libs/shared/components/src/index.ts"
+      ],
+      "@breakdown-nx/shared/composables": [
+        "libs/shared/composables/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
