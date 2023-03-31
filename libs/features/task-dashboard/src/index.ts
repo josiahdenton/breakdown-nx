@@ -1,1 +1,1 @@
-export * from './lib/features-task-dashboard.module';
+export * from './lib/task-dashboard/task-dashboard.component'
