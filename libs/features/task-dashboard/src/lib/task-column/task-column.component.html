@@ -1,0 +1,21 @@
+<div class="task-column-container">
+    <div class="task-column-header">
+        {{ title }}
+    </div>
+    <div 
+        [id]="columnId"
+        class="task-column-item-list"
+        cdkDropList
+        #taskColumn="cdkDropList"
+        [cdkDropListData]="tasks"
+        [cdkDropListConnectedTo]="connectedColumns"
+        (cdkDropListDropped)="drop($event)"
+        >
+        <breakdown-nx-task-tile 
+            cdkDrag
+            *ngFor="let task of tasks" 
+            [title]="task.title" 
+            [content]="task.content">
+        </breakdown-nx-task-tile>
+    </div>
+</div>

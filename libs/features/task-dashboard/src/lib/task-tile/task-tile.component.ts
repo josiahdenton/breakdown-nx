@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CardComponent } from '@breakdown-nx/shared/components';
 
 @Component({
   selector: 'breakdown-nx-task-tile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CardComponent],
   templateUrl: './task-tile.component.html',
   styleUrls: ['./task-tile.component.scss'],
 })
-export class TaskTileComponent {}
+export class TaskTileComponent {
+  @Input() title = '';
+  @Input() content = '';
+}

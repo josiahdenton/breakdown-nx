@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@breakdown-nx/core/models": ["libs/core/models/src/index.ts"],
       "@breakdown-nx/features/task-dashboard": [
         "libs/features/task-dashboard/src/index.ts"
       ],

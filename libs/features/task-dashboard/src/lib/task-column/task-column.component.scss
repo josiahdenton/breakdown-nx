@@ -1,0 +1,20 @@
+.task-column {
+    &-container {
+        width: 300px
+    }
+
+    // TODO: this may move to the header component
+    &-header {
+        font-size: 1.05rem;
+        padding-left: 12px;
+        padding-bottom: 6px;
+    }
+
+    &-item-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        width: 300px;
+        height: 90vh;
+    }
+}

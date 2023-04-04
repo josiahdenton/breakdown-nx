@@ -1,0 +1,10 @@
+.task-dashboard {
+    &-container {
+        display: flex;
+        gap: 2rem;
+        padding: 2rem;
+
+        margin: auto;
+        max-width: fit-content;
+    }
+}

@@ -1,1 +1,9 @@
-<p>hello!!!</p>
+<div class="task-dashboard-container">
+    <breakdown-nx-task-column 
+        *ngFor="let column of columns" 
+        [title]="column.name" 
+        [tasks]="column.tasks" 
+        [columnId]="columnId(column.id)" 
+        [connectedColumns]="connectedColumnIds(column.id)">
+    </breakdown-nx-task-column>
+</div>
