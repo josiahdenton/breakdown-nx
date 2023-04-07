@@ -10,4 +10,9 @@ import { CommonModule } from '@angular/common';
 })
 export class CardComponent {
   @Input() title = '';
+  @Input() opaque = false;
+
+  get containerClasses(): string {
+    return this.opaque ? 'card-container card-opaque' : 'card-container';
+  }
 }

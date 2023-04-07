@@ -1,10 +1,15 @@
 .card {
     &-container {
-        background-color: #F8FAFC;
+        background-color: rgb(248, 250, 252);
         padding: 1.5rem;
 
         border-radius: 20px;
         box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    }
+
+    &-opaque {
+        background-color: rgba(248, 250, 252, 0.8);
+        opacity: 0.8;
     }
 
     &-title {

@@ -1,5 +1,20 @@
-<div class="task-tile-container">
+<div 
+    cdkDrag
+    class="task-tile-container"
+>
     <breakdown-nx-card [title]="title">
         {{ content }}
     </breakdown-nx-card>
+    <div
+        *cdkDragPreview
+        class="task-tile-container"
+    >
+        <breakdown-nx-card [title]="title" [opaque]="true">
+            {{ content }}
+        </breakdown-nx-card>
+    </div>
+    <div
+        *cdkDragPlaceholder
+        class="task-tile-placeholder"
+    ></div>
 </div>

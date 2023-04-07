@@ -12,7 +12,6 @@
         (cdkDropListDropped)="drop($event)"
         >
         <breakdown-nx-task-tile 
-            cdkDrag
             *ngFor="let task of tasks" 
             [title]="task.title" 
             [content]="task.content">

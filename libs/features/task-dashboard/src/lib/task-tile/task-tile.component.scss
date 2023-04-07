@@ -1,6 +1,19 @@
 .task-tile {
     &-container {
         width: 300px;
-        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    &-placeholder {
+        width: 275px;
+        height: 5px;
+
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+
+        background-color: #2DD4BF;
+        border-radius: 25px;
     }
 }
