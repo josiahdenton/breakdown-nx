@@ -1,4 +1,17 @@
-<div [ngClass]="containerClasses">
+<button  
+    (click)="cardClicked()"
+    *ngIf="clickable; else default" 
+    [ngClass]="containerClasses">
     <div class="card-title" *ngIf="title">{{ title }}</div>
+    <ng-container *ngTemplateOutlet="contentPortal"></ng-container>
+</button>
+<ng-template #default>
+    <div [ngClass]="containerClasses">
+        <div class="card-title" *ngIf="title">{{ title }}</div>
+        <ng-container *ngTemplateOutlet="contentPortal"></ng-container>
+    </div>
+</ng-template>
+
+<ng-template #contentPortal>
     <ng-content></ng-content>
-</div>
+</ng-template>

@@ -1,9 +1,11 @@
-<div class="task-dashboard-container">
-    <breakdown-nx-task-column 
-        *ngFor="let column of columns" 
-        [title]="column.name" 
-        [tasks]="column.tasks" 
-        [columnId]="columnId(column.id)" 
-        [connectedColumns]="connectedColumnIds(column.id)">
+<div class="task-dashboard-container" *ngIf="groupsWithIdList$ | async as groupsWithIdList">
+    <!-- NOTE: how the as comes after the async pipe... -->
+    <breakdown-nx-task-column
+        *ngFor="let group of groupsWithIdList.groups"
+        [group]="group"
+        [columnId]="columnId(group.id)"
+        [connectedColumns]="connectedColumnIds(group.id, groupsWithIdList.groupIds)">
     </breakdown-nx-task-column>
+    <!-- since this is not two way binding, updates to tasks won't occur in this component... -->
+    <!-- need to explore if we should use only a (take(1)) or if async sub won't break the drag and drop module -->
 </div>

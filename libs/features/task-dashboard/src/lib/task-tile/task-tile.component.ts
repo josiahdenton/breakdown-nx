@@ -1,17 +1,29 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import { Dialog } from '@angular/cdk/dialog';
 
-import { CardComponent } from '@breakdown-nx/shared/components';
+import { TaskDetailsComponent } from '../task-details/task-details.component';
 
 @Component({
-  selector: 'breakdown-nx-task-tile',
-  standalone: true,
-  imports: [CommonModule, CardComponent, DragDropModule],
-  templateUrl: './task-tile.component.html',
-  styleUrls: ['./task-tile.component.scss'],
+    selector: 'breakdown-nx-task-tile',
+    templateUrl: './task-tile.component.html',
+    styleUrls: ['./task-tile.component.scss'],
 })
 export class TaskTileComponent {
-  @Input() title = '';
-  @Input() content = '';
+    @Input() id = -1;
+    // using a selector adds O(n) for each tile, resulting in O(n^2)
+    // to render the dashboard where n is the number of tasks.
+    // PLAN: have the task details come from the column...
+    // performance is then O(KN) where K is the number of columns.
+    // columns should rarely ever go above > 10, so performance is not a concern here.
+    @Input() title = '';
+    @Input() content = '';
+
+    constructor(private dialog: Dialog) {}
+
+    openTaskDetails() {
+        // PLAN: pass data to component, crate an interface...
+        this.dialog.open(TaskDetailsComponent, {
+            data: { id: this.id },
+        });
+    }
 }

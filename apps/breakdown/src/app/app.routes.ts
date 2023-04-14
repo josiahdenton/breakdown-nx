@@ -1,11 +1,12 @@
 import { Route } from '@angular/router';
 
-import { TaskDashboardComponent } from '@breakdown-nx/features/task-dashboard';
-
-
+// top level routing
 export const appRoutes: Route[] = [
     {
         path: '',
-        component: TaskDashboardComponent
-    }
+        loadChildren: () =>
+            import('@breakdown-nx/features/task-dashboard').then(
+                (m) => m.TaskDashboardModule
+            ),
+    },
 ];

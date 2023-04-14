@@ -2,7 +2,7 @@
     cdkDrag
     class="task-tile-container"
 >
-    <breakdown-nx-card [title]="title">
+    <breakdown-nx-card [title]="title" [clickable]="true" (clicked)="openTaskDetails()">
         {{ content }}
     </breakdown-nx-card>
     <div

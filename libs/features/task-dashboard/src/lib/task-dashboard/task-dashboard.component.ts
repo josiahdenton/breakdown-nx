@@ -1,94 +1,49 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DragDropModule } from '@angular/cdk/drag-drop'
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { combineLatest, map } from 'rxjs';
 
-import { CardComponent } from '@breakdown-nx/shared/components';
-import { TaskCollection } from '@breakdown-nx/core/models';
+import { selectAllGroups } from '../state/tasks.selectors';
+import * as TaskActions from '../state/tasks.actions';
 
-import { TaskColumnComponent } from '../task-column/task-column.component';
-
+// TODO: perhaps rename to task-dashboard page ????
 @Component({
-  selector: 'breakdown-nx-task-dashboard',
-  standalone: true,
-  imports: [CommonModule, CardComponent, TaskColumnComponent, DragDropModule],
-  templateUrl: './task-dashboard.component.html',
-  styleUrls: ['./task-dashboard.component.scss'],
+    selector: 'breakdown-nx-task-dashboard',
+    templateUrl: './task-dashboard.component.html',
+    styleUrls: ['./task-dashboard.component.scss'],
 })
-export class TaskDashboardComponent {
+export class TaskDashboardComponent implements OnInit {
+    groups$ = this._store.select(selectAllGroups);
+    groupIds$ = this._store
+        .select(selectAllGroups)
+        .pipe(map((taskGroups) => taskGroups.map((group) => group.id)));
 
-  columns: TaskCollection[] = [
-    {
-      id: 1,
-      name: 'Backlog',
-      tasks: [
-        {
-          id: 1,
-          title: 'Y1',
-          content: 'here is some content we would display in the tile. not sure how much I should put here... lol',
-          created: Date.now(),
-          lastEdited: Date.now()
-        },
-        {
-          id: 1,
-          title: 'Y2',
-          content: 'here is some content we would display in the tile. not sure how much I should put here... lol',
-          created: Date.now(),
-          lastEdited: Date.now()
-        },
-        {
-          id: 1,
-          title: 'Y3',
-          content: 'here is some content we would display in the tile. not sure how much I should put here... lol',
-          created: Date.now(),
-          lastEdited: Date.now()
-        },
-        {
-          id: 1,
-          title: 'Y4',
-          content: 'here is some content we would display in the tile. not sure how much I should put here... lol',
-          created: Date.now(),
-          lastEdited: Date.now()
-        }
-      ]
-    },
-    {
-      id: 2,
-      name: 'In Progress',
-      tasks: [
-        {
-          id: 1,
-          title: 'Y4',
-          content: 'here is some content we would display in the tile. not sure how much I should put here... lol',
-          created: Date.now(),
-          lastEdited: Date.now()
-        }
-      ]
-    },
-    {
-      id: 3,
-      name: 'Done',
-      tasks: [
+    groupsWithIdList$ = combineLatest([this.groups$, this.groupIds$]).pipe(
+        map(([groups, groupIds]) => ({ groups, groupIds }))
+    );
 
-      ]
-    },
-  ]
+    constructor(private _store: Store) {}
 
-  /**
-   * generates a HTML tag ID for the task column 
-   * @param id the id of the task column
-   * @returns the HTML tag ID in the format `task-column-<number>`
-   */
-  columnId(id: number): string {
-    return `task-column-${id}`
-  }
+    ngOnInit() {
+        this._store.dispatch(TaskActions.loadTaskGroups());
+    }
 
-  /**
-   * only returns the column IDs that don't match ID
-   * @param id the column to exclude
-   * @returns an array of all tag ID for the task columns
-   */
-  connectedColumnIds(id: number): string[] {
-    return this.columns.filter((col) => col.id !== id).map((col) => this.columnId(col.id));
-  }
+    /**
+     * generates a HTML tag ID for the task column
+     * @param id the id of the task column
+     * @returns the HTML tag ID in the format `task-column-<number>`
+     */
+    columnId(id: number): string {
+        return `task-column-${id}`;
+    }
 
+    /**
+     * only returns the column IDs that don't match ID
+     * @param excludeId the column to exclude
+     * @returns an array of all tag ID for the task columns
+     */
+    connectedColumnIds(excludeId: number, groupIds: number[]): string[] {
+        return groupIds
+            .filter((groupId) => excludeId !== groupId)
+            .map((groupId) => this.columnId(groupId));
+    }
 }

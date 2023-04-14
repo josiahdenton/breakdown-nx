@@ -1,31 +1,35 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "rootDir": ".",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "lib": ["es2017", "dom"],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@breakdown-nx/core/models": ["libs/core/models/src/index.ts"],
-      "@breakdown-nx/features/task-dashboard": [
-        "libs/features/task-dashboard/src/index.ts"
-      ],
-      "@breakdown-nx/shared/components": [
-        "libs/shared/components/src/index.ts"
-      ],
-      "@breakdown-nx/shared/composables": [
-        "libs/shared/composables/src/index.ts"
-      ]
-    }
-  },
-  "exclude": ["node_modules", "tmp"]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "esnext",
+        "lib": ["es2017", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@breakdown-nx/core/filesystem": [
+                "libs/core/filesystem/src/index.ts"
+            ],
+            "@breakdown-nx/core/models": ["libs/core/models/src/index.ts"],
+            "@breakdown-nx/core/services": ["libs/core/services/src/index.ts"],
+            "@breakdown-nx/features/task-dashboard": [
+                "libs/features/task-dashboard/src/index.ts"
+            ],
+            "@breakdown-nx/shared/components": [
+                "libs/shared/components/src/index.ts"
+            ],
+            "@breakdown-nx/shared/composables": [
+                "libs/shared/composables/src/index.ts"
+            ]
+        }
+    },
+    "exclude": ["node_modules", "tmp"]
 }

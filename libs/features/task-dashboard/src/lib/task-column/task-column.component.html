@@ -1,20 +1,24 @@
 <div class="task-column-container">
     <div class="task-column-header">
-        {{ title }}
+        {{ group.name }}
     </div>
     <div 
         [id]="columnId"
         class="task-column-item-list"
         cdkDropList
         #taskColumn="cdkDropList"
-        [cdkDropListData]="tasks"
+        [cdkDropListData]="group"
         [cdkDropListConnectedTo]="connectedColumns"
         (cdkDropListDropped)="drop($event)"
         >
-        <breakdown-nx-task-tile 
-            *ngFor="let task of tasks" 
-            [title]="task.title" 
-            [content]="task.content">
-        </breakdown-nx-task-tile>
+        <ng-container *ngIf="tasks$ | async as tasks">
+            <breakdown-nx-task-tile 
+                *ngFor="let id of group.tasks" 
+                [id]="id"
+                [title]="tasks[id].title" 
+                [content]="tasks[id].content">
+            </breakdown-nx-task-tile>
+        </ng-container>
+        <!-- TODO: have a "loading" spinner as an alt... -->
     </div>
 </div>

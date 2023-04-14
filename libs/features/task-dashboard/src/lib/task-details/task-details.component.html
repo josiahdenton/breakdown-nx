@@ -1,0 +1,6 @@
+<breakdown-nx-card>
+    <div class="task-details-container" *ngIf="task$ | async as task">
+        {{ task.title }}
+        {{ task.content }}
+    </div>
+</breakdown-nx-card>
